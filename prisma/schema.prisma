@@ -9,3 +9,24 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Post {
+  id                Int        @id @default(autoincrement())
+  title             String     @db.VarChar(255)
+  company           String     @db.VarChar(255)
+  description       String
+  requiredSkills    String[]
+  recommendedSkills String[]
+  url               String
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+  deadline          DateTime?
+  status            PostStatus @default(WAITING)
+}
+
+enum PostStatus {
+  WAITING
+  APPROVED
+  REJECTED
+  SPONSORED
+}
