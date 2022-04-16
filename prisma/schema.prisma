@@ -14,12 +14,15 @@ model Post {
   id                Int        @id @default(autoincrement())
   title             String     @db.VarChar(255)
   company           String     @db.VarChar(255)
+  name              String     @db.VarChar(255)
+  email             String     @db.VarChar(255)
   description       String
   requiredSkills    String[]
   recommendedSkills String[]
   url               String
   createdAt         DateTime   @default(now())
   updatedAt         DateTime   @updatedAt
+  published         DateTime?
   deadline          DateTime?
   status            PostStatus @default(WAITING)
 }
