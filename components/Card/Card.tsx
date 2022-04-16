@@ -15,12 +15,14 @@ const Card = ({
   margin = "4",
   padding = "4",
 }: Props) => {
+  const p = `p-${padding}`;
+  const m = `m-${margin}`;
   return (
-    <div
-      className={`w-full m-${margin} p-${padding} border-gray-500 bg-white rounded-md`}
-    >
+    <div className={`w-full max-w-6xl ${m} ${p} border-gray-500 bg-white rounded-md`}>
       {title && <h3 className="text-xl font-bold mt-1">{title}</h3>}
-      {subtitle && <h4 className="text-stone-600 font-semibold ">{subtitle}</h4>}
+      {subtitle && (
+        <h4 className="text-stone-600 font-semibold ">{subtitle}</h4>
+      )}
       {children}
     </div>
   );
