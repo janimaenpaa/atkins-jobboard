@@ -14,6 +14,8 @@ export const createPost = async (req: NextApiRequest) => {
   const {
     title,
     company,
+    name,
+    email,
     description,
     requiredSkills = [],
     recommendedSkills = [],
@@ -21,14 +23,21 @@ export const createPost = async (req: NextApiRequest) => {
     deadline,
   } = req.body;
 
-  const newPost: Omit<Post, "id" | "createdAt" | "updatedAt" | "status"> = {
+  const validatedDeadline = new Date(deadline);
+
+  const newPost: Omit<
+    Post,
+    "id" | "createdAt" | "updatedAt" | "published" | "status"
+  > = {
     title,
     company,
+    name,
+    email,
     description,
     requiredSkills,
     recommendedSkills,
     url,
-    deadline: deadline && new Date(deadline),
+    deadline: validatedDeadline,
   };
 
   try {
