@@ -1,19 +1,42 @@
 import { Post } from "@prisma/client";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Card from "../../components/Card";
 import Container from "../../components/Container";
 import Input from "../../components/Input";
+import SkillInput from "../../components/SkillInput";
 
 type Props = {};
 
 const PostJob = (props: Props) => {
+  const router = useRouter();
+  const [requiredSkills, setRequiredSkills] = useState<string[]>([]);
+  const [recommendedSkills, setRecommendedSkills] = useState<string[]>([]);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Post>();
-  const onSubmit = handleSubmit((data) => console.log(data));
+
+  const onSubmit = handleSubmit(async (data) => {
+    const newPost = { ...data, requiredSkills, recommendedSkills };
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newPost),
+    });
+
+    if (response.ok) {
+      router.push("/");
+    } else {
+      console.log(response.json());
+    }
+  });
+
   console.log({ errors });
   return (
     <Container>
@@ -58,6 +81,17 @@ const PostJob = (props: Props) => {
             error={errors?.url}
           />
           <Input register={{ ...register("deadline") }} label="Deadline" />
+          <SkillInput
+            skills={requiredSkills}
+            setSkills={setRequiredSkills}
+            label="Required skills"
+            bgColor="bg-emerald-500"
+          />
+          <SkillInput
+            skills={recommendedSkills}
+            setSkills={setRecommendedSkills}
+            label="Recommended skills"
+          />
           <button
             className="w-full bg-sky-500 p-2 text-white rounded-md"
             type="submit"
