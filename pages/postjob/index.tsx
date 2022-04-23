@@ -36,8 +36,7 @@ const PostJob = (props: Props) => {
       console.log(response.json());
     }
   });
-
-  console.log({ errors });
+  
   return (
     <Container>
       <Card>

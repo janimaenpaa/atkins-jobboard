@@ -20,7 +20,6 @@ const SkillInput = ({
   label,
 }: Props) => {
   const [skill, setSkill] = useState<string>("");
-  console.log(skill);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSkill(event.target.value);
