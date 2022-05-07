@@ -9,9 +9,14 @@ const Navigation = (props: Props) => {
       <Link href="/">
         <a className="text-lg font-bold">Atkins Jobs</a>
       </Link>
-      <Link href="/postjob">
-        <a className="font-semibold">Post A Job</a>
-      </Link>
+      <div>
+        <Link href="/admin">
+          <a className="font-semibold">Admin</a>
+        </Link>
+        <Link href="/postjob">
+          <a className="font-semibold ml-4">Post A Job</a>
+        </Link>
+      </div>
     </div>
   );
 };
