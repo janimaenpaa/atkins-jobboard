@@ -7,7 +7,7 @@ import { DELETE, PUT } from "../../lib/api";
 import Card from "../Card";
 
 type Props = {
-  posts: Post[];
+  posts: any[];
 };
 
 const PostTable = ({ posts }: Props) => {
