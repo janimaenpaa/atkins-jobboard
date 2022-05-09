@@ -22,7 +22,7 @@ const PostJob = (props: Props) => {
   const onSubmit = handleSubmit(async (data) => {
     const newPost = { ...data, requiredSkills, recommendedSkills };
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
+    const response = await fetch(`/api/posts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
