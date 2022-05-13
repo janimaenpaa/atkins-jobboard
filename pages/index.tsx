@@ -25,7 +25,23 @@ const Home: NextPage<Props> = ({ posts }) => {
 };
 
 export async function getServerSideProps() {
-  const posts = await prisma.post.findMany({ orderBy: { createdAt: "desc" } });
+  const posts = await prisma.post.findMany({
+    orderBy: { createdAt: "desc" },
+    select: {
+      id: true,
+      company: true,
+      createdAt: true,
+      deadline: true,
+      description: true,
+      published: true,
+      requiredSkills: true,
+      recommendedSkills: true,
+      status: true,
+      title: true,
+      updatedAt: true,
+      url: true,
+    },
+  });
   return {
     props: { posts },
   };
