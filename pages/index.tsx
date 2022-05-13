@@ -1,4 +1,4 @@
-import { Post } from "@prisma/client";
+import { Post, PostStatus } from "@prisma/client";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Container from "../components/Container";
@@ -26,7 +26,13 @@ const Home: NextPage<Props> = ({ posts }) => {
 
 export async function getServerSideProps() {
   const posts = await prisma.post.findMany({
-    orderBy: { createdAt: "desc" },
+    where: {
+      OR: [
+        { status: { equals: PostStatus.APPROVED } },
+        { status: { equals: PostStatus.SPONSORED } },
+      ],
+    },
+    orderBy: [{ status: "desc" }, { createdAt: "desc" }],
     select: {
       id: true,
       company: true,
