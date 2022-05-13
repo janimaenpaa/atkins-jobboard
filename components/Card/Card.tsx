@@ -15,7 +15,7 @@ const Card = ({ children, title, titleHref, subtitle, fullWidth }: Props) => {
       className={
         fullWidth
           ? `max-w-full m-2 p-4 border-gray-500 bg-white rounded-md  overflow-x-auto`
-          : `w-full max-w-6xl m-2 p-4 border-gray-500 bg-white rounded-md`
+          : `w-full max-w-4xl m-2 p-4 border-gray-500 bg-white rounded-md`
       }
     >
       {title && !titleHref && (
