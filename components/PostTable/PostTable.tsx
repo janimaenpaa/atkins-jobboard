@@ -87,6 +87,7 @@ const PostTable = ({ posts }: Props) => {
       {
         columns,
         data,
+        initialState: { sortBy: [{ id: "title", desc: false }] },
       },
       useSortBy
     );
@@ -103,7 +104,7 @@ const PostTable = ({ posts }: Props) => {
 
   return (
     <Card fullWidth>
-      <h2 className="text-2xl text-center m-2 font-bold">Posts</h2>
+      <h2 className="text-2xl m-4 font-bold">Posts</h2>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
