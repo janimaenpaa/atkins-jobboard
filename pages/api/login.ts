@@ -31,7 +31,7 @@ const handler = nextConnect<NextApiRequest, NextApiResponse>().post(
 
     res
       .status(401)
-      .json({ error: "Wrong password.", password: process.env.PASSWORD });
+      .json({ error: "Wrong password.", password: process.env.ADMIN_PASSWORD });
     return;
   }
 );
